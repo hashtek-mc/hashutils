@@ -29,7 +29,7 @@ public class Reflection
         throws ClassNotFoundException
     {
         return Class.forName(
-            "net.minecraft.server" + Bukkit.getServer().getClass().getPackage().getName().split("\\.")[3] + "." + name
+            "net.minecraft.server." + Bukkit.getServer().getClass().getPackage().getName().split("\\.")[3] + "." + name
         );
     }
 
