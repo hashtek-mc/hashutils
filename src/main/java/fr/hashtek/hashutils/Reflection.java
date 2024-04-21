@@ -18,7 +18,8 @@ public class Reflection
         final Object handle = player.getClass().getMethod("getHandle").invoke(player);
         final Object playerConnection = handle.getClass().getField("playerConnection").get(handle);
 
-        playerConnection.getClass().getMethod("sendPacket", getNMSClass("Packet")).invoke(playerConnection, packet);
+        playerConnection.getClass().getMethod("sendPacket", getNMSClass("Packet"))
+            .invoke(playerConnection, packet);
     }
 
     /**
