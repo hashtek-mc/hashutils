@@ -18,11 +18,26 @@ public class Reflection
         if (!player.isOnline())
             throw new Exception("Player is not online.");
 
-        final Object handle = player.getClass().getMethod("getHandle").invoke(player);
-        final Object playerConnection = handle.getClass().getField("playerConnection").get(handle);
+        final Object playerConnection = this.getPlayerConnection(player);
 
         playerConnection.getClass().getMethod("sendPacket", getNMSClass("Packet"))
             .invoke(playerConnection, packet);
+    }
+
+    /**
+     * @param   player      Player
+     * @return  Player's PlayerConnection as an abstract object.
+     * @throws  Exception   Either if player is not online or class exception.
+     */
+    public Object getPlayerConnection(Player player)
+        throws Exception
+    {
+        if (!player.isOnline())
+            throw new Exception("Player is not online.");
+
+        final Object handle = player.getClass().getMethod("getHandle").invoke(player);
+
+        return handle.getClass().getField("playerConnection").get(handle);
     }
 
     /**
