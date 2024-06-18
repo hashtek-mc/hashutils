@@ -15,6 +15,9 @@ public class Reflection
     public void sendPacket(Player player, Object packet)
         throws Exception
     {
+        if (!player.isOnline())
+            throw new Exception("Player is not online.");
+
         final Object handle = player.getClass().getMethod("getHandle").invoke(player);
         final Object playerConnection = handle.getClass().getField("playerConnection").get(handle);
 
