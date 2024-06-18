@@ -52,4 +52,16 @@ public class Reflection
         );
     }
 
+    /**
+     * Get the value of an enum.
+     *
+     * @param clazz The enum class
+     * @param value The value of the enum
+     * @return The value of the enum as an {@code Object}
+     */
+    public <T extends Enum<T>> T getEnumValue(Class<T> clazz, String value)
+    {
+        return Enum.valueOf(clazz, value);
+    }
+
 }
